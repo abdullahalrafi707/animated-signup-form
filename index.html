@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Animated SignUp Form</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Sign Up</h1>
+       <form action="" method="">
+           <input type="text" placeholder="Username" name="username" id="username" required/> <br/>
+           <input type="email" placeholder="Email" name="email" id="email" required> <br/>
+           <p id="intro-pass"></p>
+           <input type="password" name="password" placeholder="Password" id="pass" required/> <br/>
+           <p id="intro-cpass"></p>
+           <input type="password" name="cpassword" placeholder="Confrim Password" id="cpass" required/>
+           <input type="submit" value="SignUp"/>
+       </form>
+    </div>
+<script>
+  
+var password = document.getElementById('pass');
+var cpassword = document.getElementById('cpass');
+var passNote = document.getElementById('intro-pass');
+var cpassNote = document.getElementById('intro-cpass');
+
+password.addEventListener('focusin' , ()=>{
+    passNote.innerText = 'Enter the password '
+    passNote.style.color = 'red';
+});
+
+password.addEventListener('focusout' , ()=>{
+   passNote.innerText = '';
+   if (password.value == cpassword.value) {
+        cpassNote.style.color = 'green';
+        cpassNote.innerText = '';
+        cpassword.style.borderColor = "green";
+        password.style.borderColor = "green";
+    } else {
+        cpassNote.style.color = 'red';
+        cpassNote.innerText = "Both passwords must be same !";
+        cpassword.value = "";
+        cpassword.style.borderColor = "red";
+        password.style.borderColor = "red";
+    }
+});
+
+password.addEventListener('input' , ()=>{
+    passNote.innerText = "";
+})
+
+cpassword.addEventListener('focusin' , ()=>{
+   cpassNote.innerText = 'Confirm the password';
+   cpassNote.style.color = 'red';
+   if (password.value == cpassword.value) {
+    cpassNote.style.color = 'green';
+    cpassNote.innerText = 'Password Matched';
+}
+if (password.value == "") {
+    cpassNote.style.color = 'red';
+    cpassNote.innerText = "Enter the password first !!";
+   }
+});
+
+cpassword.addEventListener('input' , ()=>{
+    if (password.value == cpassword.value) {
+        cpassNote.style.color = 'green';
+        cpassNote.innerText = 'Password Matched';
+        cpassword.style.borderColor = "green";
+        password.style.borderColor = "green";
+    } else {
+        cpassNote.style.color = 'red';
+        cpassNote.innerText = "Both passwords must be same !";
+    }
+    if (password.value == "") {
+        cpassNote.style.color = 'red';
+        cpassNote.innerText = "Enter the password first !!";
+       }
+});
+
+cpassword.addEventListener('focusout' , ()=>{
+    if (password.value == cpassword.value) {
+        cpassNote.style.color = 'green';
+        cpassNote.innerText = '';
+    } else {
+        cpassNote.style.color = 'red';
+        cpassNote.innerText = "Both passwords must be same !";
+        cpassword.value = "";
+        password.value = "";
+        cpassword.style.borderColor = "red";
+        password.style.borderColor = "red";
+    }
+});
+  
+  
+</script>
+</body>
+</html>
